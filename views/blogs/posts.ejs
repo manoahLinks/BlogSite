@@ -1,0 +1,48 @@
+<%- include ('../partials/header')%>
+
+<%- include ('../partials/navbar')%>
+
+<!-- Horizontal -->
+<div class="container">
+  <div class="row">
+      <%- include ('../partials/sidebar')%>
+      <div class="col-md-6">
+        <div class="card">
+          <img class="img-thumbnail img-h ratio ratio-4x3" src="../assets/img/<%= blog.image%>" alt="blog image"/>
+          <div class="caption-full">
+            <p>No of clicks: <%= blog.clicks %></p>
+            <p><a><%= blog.title%></a></p>
+          </div>
+          <p><strong><%= blog.summary%></strong></p>
+          <p><%= blog.body%></p>
+          <P>category:<span> <%= blog.postCategory%></span></P>
+          <p> <span>Location: <%= blog.city%></span></p>
+          <p class="card-text"><small class="text-muted"><%= blog.created_at%></small></p>
+        </div>
+        <div class="well">
+          <div class="text-right">
+            <form action="/blogs/<%= blog._id%>/comment" method="post">
+              <input type="text" name="comment[content]" placeholder="whats your opinion?">
+              <button class="btn btn-outline-success">comment</button>
+            </form>
+          </div>
+          <div class="container form-control">
+            <h6>comments</h6>
+          <hr>
+          <div class="row">
+            <div class="col-md-12">
+              <% blog.comments.forEach((comment)=>{ %>
+                <p><strong>Author</strong></p>
+                <p> <%= comment.content%></p>
+                <hr>
+              <% }) %>
+            </div>
+          </div>  
+          </div>
+          
+        </div>
+      </div> 
+  </div>
+</div>
+
+<%- include ('../partials/footer')%>
