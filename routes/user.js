@@ -1,52 +1,14 @@
-let user = require('../models/user.js')
+let express = require('express'),
+    router = express.Router(),
+    helpers = require('../helpers/users')
 
-exports.showRegisterUserPage = (req, res)=>{
-    res.render('user/register')
-}
+//  authentication
 
-exports.registerUser = (req, res)=>{
+router.route('/user')
+    .get(helpers.showRegisterUserPage)
+    .post(helpers.registerUser)
 
-    user.find({}, (err, userProfiles)=>{
-        if(err){
-            console.log('couldnt find users')
-        }else{
+router.route('/user/:id')
+    .get(helpers.profileUpdate)
 
-            if(userProfiles.length == 0){
-                user.create(req.body.user, (err, newUser)=>{
-                    if(err){
-                            console.log('error in creating user')
-                            console.log(err)
-                        }else{
-                            console.log('created when array is empty')
-                            console.log(newUser)
-                        }
-                    })
-            }else{
-                userProfiles.forEach((userProfile)=>{
-                    console.log('users looped about to compare emails')
-                    if(userProfiles.length == 0 || userProfile.email == req.body.user.email){
-                        console.log('user already exist')
-                    }else{
-                        console.log('about to create user')
-                        user.create(req.body.user, (err, newUser)=>{
-                            if(err){
-                                    console.log('error in creating user')
-                                    console.log(err)
-                                }else{
-                                    console.log('this is the new user')
-                                    console.log(newUser)
-                                }
-                            })
-                    }
-                })
-            }
-        }
-    })
-
-    
-    }
-exports.profileUpdate = (req, res)=>{
-    res.render('user/update')
-}
-
-module.exports = exports
+module.exports = router    
