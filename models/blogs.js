@@ -6,13 +6,13 @@ let blogSchema = new mongoose.Schema({
     title:          {type:String},
     summary:        {type:String},
     body :          {type:String},
-    image:          {type:Object},
+    image:          [{type:Object}],
     postCategory:   {type:String},
     likes:          {type:Number},
     city:           {type:String},
     clicks:         {type: Number, default: 0},
     comments:       [{type: mongoose.Schema.Types.ObjectId, ref : 'comment'}],
-    created_by:     {type:mongoose.Schema.Types.ObjectId, ref: 'user'},
+    createdBy:      {type:mongoose.Schema.Types.ObjectId, ref: 'user'},
     created_at:     {type: Date, default: Date.now()}
 
 })

@@ -7,15 +7,19 @@ let express                 = require('express'),
     bodyParser              = require('body-parser'),
     blogRoute               = require('./routes/blog'),
     userRoute               = require('./routes/user'),
+    adminRoute              = require('./routes/admin'),
+    db                      = require('./models'),
     commentRoute            = require('./routes/comment')   
+
 
 app.set("view engine", "ejs")
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(methodOverride("_method"))
+// app.use(methodOverride("_method"))
            
 app.use('/api/user', userRoute)
+app.use('/api/admin', adminRoute)
 app.use('/api/admin/:id/blogs', blogRoute)
 
 

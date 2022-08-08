@@ -12,6 +12,7 @@ mongoose.connect('mongodb://localhost/blogSite')
 mongoose.Promise = Promise
 
 // requiring and exporting the admin & link models
-module.exports.Blogs = require('./blogs')
+module.exports.Blogs    = require('./blogs')
 module.exports.Comments = require('./comments')
-module.exports.User  = require('./users')
+module.exports.Users    = require('./user')
+module.exports.Admins    = require('./admin')

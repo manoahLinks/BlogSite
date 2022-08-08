@@ -4,10 +4,13 @@ let express = require('express'),
 
 //  authentication
 
-router.route('/user')
-    .get(helpers.showRegisterUserPage)
-    .post(helpers.registerUser)
+router.route('/')
+    
 
+router.route('/register')
+    .get(helpers.showRegisterUserPage)
+    .post(helpers.registerUser)    
+    
 router.route('/user/:id')
     .get(helpers.profileUpdate)
 
