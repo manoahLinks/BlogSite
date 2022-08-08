@@ -1,7 +1,7 @@
 require('dotenv').config()
 let Blog    = require('../models/blogs'),
     Admin   = require('../models/admin'),
-    db      = require('../models')
+    db      = require('../models'),
     bcrypt  = require('bcrypt'),
     jwt     = require('jsonwebtoken')
 
@@ -15,7 +15,7 @@ exports.registerAdmin = async (req, res)=>{
 
     const admin = new Admin(body)
 
-    const salt = await bcrypt.gensalt(10)
+    const salt = await bcrypt.genSalt(10)
     
     admin.password = await bcrypt.hash(body.password, salt)
 

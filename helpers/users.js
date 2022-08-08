@@ -16,7 +16,7 @@ exports.registerUser = async (req, res)=>{
 
     const user = new User(body)
 
-    const salt = await bcrypt.gensalt(10)
+    const salt = await bcrypt.genSalt(10)
     
     user.password = await bcrypt.hash(body.password, salt)
 

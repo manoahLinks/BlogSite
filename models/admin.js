@@ -13,7 +13,7 @@ adminSchema = new mongoose.Schema({
     ipAddress:  {type: String}
 })
 
-let Admin = mongoose.model('user', userSchema)
+let Admin = mongoose.model('admin', adminSchema)
 
 module.exports = Admin
 

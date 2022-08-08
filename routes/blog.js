@@ -1,5 +1,5 @@
 let express = require('express'),
-    router = express.Router(),
+    router = express.Router({mergeParams: true}),
     helpers = require('../helpers/blog')
 
 

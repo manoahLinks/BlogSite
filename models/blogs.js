@@ -12,7 +12,7 @@ let blogSchema = new mongoose.Schema({
     city:           {type:String},
     clicks:         {type: Number, default: 0},
     comments:       [{type: mongoose.Schema.Types.ObjectId, ref : 'comment'}],
-    createdBy:      {type:mongoose.Schema.Types.ObjectId, ref: 'user'},
+    createdBy:      {type: mongoose.Schema.Types.ObjectId, ref: 'admin'},
     created_at:     {type: Date, default: Date.now()}
 
 })

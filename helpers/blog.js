@@ -1,5 +1,6 @@
 let blog    = require('../models/blogs'),
-    comment = require('../models/comments.js')
+    comment = require('../models/comments.js'),
+    Admin   = require('../models/admin')
 
 exports.displayAllBlogs = async (req, res)=>{
     let blogs = await blog.find({})
@@ -17,7 +18,14 @@ exports.createNewBlog = async (req, res)=>{
    const Blog =  new blog(body)
         Blog.createdBy = req.params.id
         Blog.save().then((newBlog)=>{
-            res.json({newBlog})
+            Admin.findById(req.params.id)
+                .then((foundAdmin)=>{
+                    foundAdmin.blogPosts.push(newBlog._id)
+                    foundAdmin.save().then((updatedAdmin)=>{
+                        // res.json({updatedAdmin})
+                    })
+                })
+            res.status(201).json({newBlog})
         })
         .catch((err)=>{
             res.status(400).json({message: 'Oops error while creating a Blog', error: err})
@@ -37,14 +45,23 @@ exports.displayBlogMoreInfo =  async (req, res)=>{
 }
 
 exports.updateBlog = async (req, res)=>{
-    let response = await blog.findByIdAndUpdate(req.params.id, req.body.blog)
-    res.redirect('/blogs')
+    let updatedBlog = await blog.findByIdAndUpdate(req.params.id, req.body.blog)
+            .then((updatedBlog)=>{
+                res.status(201).json(updatedBlog)
+            })
+            .catch((err)=>{
+                res.status(400).json({message: 'An error occurred while updating blog'})
+            })
 }
 
 exports.deleteBlog = async (req, res)=>{
-    let response =  await blog.findByIdAndRemove(req.params.id)
-    console.log(response, 'deleted')
-    res.redirect('/blogs')
+    let deletedBlog =  await blog.findByIdAndRemove(req.params.id)
+            .then((deletedBlog)=>{
+                res.status(200).json({mesage: `the Blog with id: ${deletedBlog.id} was successfully deleted`})
+            })
+            .catch((err)=>{
+                res.json({message: 'an error occured while delting this file'})
+            })
 }
 
 
