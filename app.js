@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use('/api/user', userRoute)
 app.use('/api/admin', adminRoute)
 app.use('/api/admin/:id/blogs', blogRoute)
+app.use('/api/blogs/:id', commentRoute)
 
 
 app.listen(5555, ()=>{

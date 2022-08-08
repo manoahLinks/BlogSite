@@ -1,10 +1,10 @@
 let express = require('express'),
-    router =  express.Router(),
+    router =  express.Router({mergeParams: true}),
     helpers = require('../helpers/comment.js')
 
 // create new comment
-router.route('/blogs/:id/comment')
-    .post(helpers.comment)
+router.route('/')
+    .post(helpers.createNewComment)
 
 
 module.exports = router    

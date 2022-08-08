@@ -1,7 +1,8 @@
 let mongoose = require('mongoose')
 
 let commentSchema = new mongoose.Schema({
-    userId:     {type: mongoose.Schema.Types.ObjectId, ref: "user", required: [true]},
+    userId:     {type: mongoose.Schema.Types.ObjectId, ref: "user"},
+    adminId:    {type: mongoose.Schema.Types.ObjectId, ref: "admin"},
     blogId:     {type: mongoose.Schema.Types.ObjectId, ref: "blog", required: [true]},
     comment:    {type: String, required: [true]},
     likes:      {type:Number, default: 0},

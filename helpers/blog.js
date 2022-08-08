@@ -3,11 +3,11 @@ let blog    = require('../models/blogs'),
     Admin   = require('../models/admin')
 
 exports.displayAllBlogs = async (req, res)=>{
-    let blogs = await blog.find({})
+    let blogs = await blog.find({}).populate("admin")
         .then((blogs)=>{
             res.status(200).json(blogs)
         }).catch((err)=>{
-            res.json({message: 'blogs cannot be retrived at this moment'})
+            res.json({message: 'blogs cannot be retrived at this moment', error: err})
         })
 }    
 

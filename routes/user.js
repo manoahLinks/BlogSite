@@ -11,7 +11,7 @@ router.route('/register')
     .get(helpers.showRegisterUserPage)
     .post(helpers.registerUser)    
     
-router.route('/user/:id')
+router.route('/:id')
     .get(helpers.profileUpdate)
 
 module.exports = router    

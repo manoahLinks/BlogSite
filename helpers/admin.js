@@ -30,7 +30,7 @@ exports.registerAdmin = async (req, res)=>{
 exports.loginAdmin = async (req, res)=>{
 
     const body = req.body
-    let foundAdmin = await User.findOne({email: body.email})
+    let foundAdmin = await Admin.findOne({email: body.email})
             if(foundAdmin){
                 let validPassword = await bcrypt.compare(body.password ,foundAdmin.password)
                     if(validPassword){
@@ -42,7 +42,17 @@ exports.loginAdmin = async (req, res)=>{
                 res.status(400).json({message: 'the email you provided is not in our database'})
             }
 }
-    
+
+exports.displayAllAdmins = async (req, res)=>{
+
+    let allAdmins = await Admin.find({})
+        .then((allAdmins)=>{
+            res.status(200).json(allAdmins)
+        })
+        .catch((err)=>{
+            res.status(400).json({message: 'error admins cannot be retrieved at this time', error: err})
+        })
+}
 
 exports.displayAllBlogs = (req, res)=>{
     Blog.find({}, (err, blogs)=>{

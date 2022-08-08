@@ -2,8 +2,8 @@ let express = require('express'),
     router = express.Router(),
     helpers = require('../helpers/admin')
 
-// router.route('/')
-//     .get(helpers.displayAllAdmins)
+router.route('/')
+    .get(helpers.displayAllAdmins)
 
 router.route('/register')
     .post(helpers.registerAdmin)

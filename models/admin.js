@@ -5,7 +5,7 @@ adminSchema = new mongoose.Schema({
     email:      {type:String, required: [true, 'this field cannot be empty']},
     password:   {type:String, required: [true, 'this field cannot be empty']},
     comments:   [{type: mongoose.Schema.Types.ObjectId, ref : 'comment'}],
-    blogPosts:   [{type: mongoose.Schema.Types.ObjectId, ref : 'blog'}],
+    blogPosts:  [{type: mongoose.Schema.Types.ObjectId, ref : 'blog'}],
     group:      {type: Number, default: 1},
     active:     {type: Boolean, default: true},
     created_at: {type: Date, default: Date.now()},
