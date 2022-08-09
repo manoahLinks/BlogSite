@@ -3,8 +3,6 @@ let express = require('express'),
     helpers = require('../helpers/users')
 
 //  authentication
-
-router.route('/')
     
 
 router.route('/register')

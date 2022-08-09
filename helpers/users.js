@@ -46,7 +46,8 @@ exports.loginUser = async (req, res)=>{
 }
 
 exports.profileUpdate = (req, res)=>{
-    res.render('user/update')
+    body = req.body
+    res.json(body)
 }
 
 module.exports = exports

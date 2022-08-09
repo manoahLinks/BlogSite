@@ -3,7 +3,7 @@ let blog    = require('../models/blogs'),
     Admin   = require('../models/admin')
 
 exports.displayAllBlogs = async (req, res)=>{
-    let blogs = await blog.find({}).populate("admin")
+    const blogs = await blog.find({})
         .then((blogs)=>{
             res.status(200).json(blogs)
         }).catch((err)=>{
